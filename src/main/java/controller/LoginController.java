@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import domain.LoginDTO;
+import domain.LoginVO;
 import service.LoginServiceImpl;
 
 /**
@@ -49,16 +51,20 @@ public class LoginController extends HttpServlet {
 		dto.setUpw(upw);
 		
 		LoginServiceImpl service = new LoginServiceImpl();
-		boolean isLogin = service.read(dto);
-		//true이면 세션 생선 및 마이페이지로 이동
-		if(isLogin) {
+		LoginVO vo = service.read(dto);
+		
+		if(vo != null) {
+			//true이면 세션생성 및 마이페이지로 이동
+			HttpSession session = request.getSession();
+			session.setAttribute("sessId", vo.getUid());
+			session.setAttribute("sessName", vo.getUname());
+			session.setAttribute("sessSchName", vo.getSchoolname());
+			response.sendRedirect("MyPage");
 			
-		}else {
-			//false면 로그인페이지로 이동.
+		} else {
+			//false이면 로그인페이지로 이동
 			response.sendRedirect("Login");
 		}
-		
-		
 	}
 
 }

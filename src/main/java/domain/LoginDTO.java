@@ -9,6 +9,7 @@ public class LoginDTO {
 	private String upw;
 	
 	
+	
 	//Get, Set 매소드
 	public String getUid() {
 		return uid;

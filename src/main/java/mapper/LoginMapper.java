@@ -7,70 +7,63 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import domain.LoginDTO;
+import domain.LoginVO;
 
 public class LoginMapper {
-	
-	public boolean read(LoginDTO dto) {
-		
+
+	public LoginVO read(LoginDTO dto) {
 		String url = "jdbc:mysql://localhost:3306/garam?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "smart";
-		
-		
-		StringBuffer sql = new StringBuffer();
-		sql.append(" select count(*) cnt from g_member " );
-		sql.append(" where uid = ? and upw = sha1(?) ");
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		
 		try {
-			//드라이버로드
+			StringBuffer qry = new StringBuffer();
+			qry.append(" SELECT * FROM g_member ");
+			qry.append(" WHERE uid = ? AND upw = sha1(?) ");
+						
+			String sql = qry.toString();
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			//연결
 			conn = DriverManager.getConnection(url, user, password);
-			//SQL
-			stmt = conn.prepareStatement(sql.toString());
-			//값 설정(쿼리 문 '?'에 들어 갈 값)
+			
+			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, dto.getUid());
 			stmt.setString(2, dto.getUpw());
-			// 출력
+			
 			rs = stmt.executeQuery();
 			
 			if(rs.next()) {
-				if("1".equals(rs.getString("cnt"))) {
-					return true;
-				}else {
-					return false;
-				}
+				LoginVO vo = new LoginVO();
+				
+				vo.setUid(rs.getString("uid"));
+				vo.setUname(rs.getString("uname"));
+				vo.setSchoolname(rs.getString("schoolname"));
+				
+				return vo;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			//닫기
-			
-				try {
-					if (stmt != null)
-					stmt.close();
-					if (conn != null)
-						conn.close();
-					if (rs != null)
-						rs.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(stmt != null) stmt.close();
+				if(conn != null) conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-		
-		
-		
-		
-		return false;
+		return null;
 	}
 
 }
+
+
+
+
+
