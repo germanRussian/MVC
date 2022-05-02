@@ -21,7 +21,7 @@
 
 
 		<div class="a01">
-			<form action="loginAct.jsp" method="post">
+			<form action="" method="post">
 				<div>
 					<span>ID</span><input type="text" name="uid">
 				</div>

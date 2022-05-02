@@ -9,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import domain.LoginDTO;
-import service.LoginServiceImpl;
-
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class MyPageController
  */
-@WebServlet("/Login")
-public class LoginController extends HttpServlet {
+@WebServlet("/MyPage")
+public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public MyPageController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,39 +28,16 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("views/login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/mypage.jsp");
 		dispatcher.forward(request, response);
-	}
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
-		String uid = request.getParameter("uid");
-		String upw = request.getParameter("upw");
-		
-		LoginDTO dto = new LoginDTO();
-		dto.setUid(uid);
-		dto.setUpw(upw);
-		
-		LoginServiceImpl service = new LoginServiceImpl();
-		boolean isLogin = service.read(dto);
-		//true이면 세션 생선 및 마이페이지로 이동
-		if(isLogin) {
-			
-		}else {
-			//false면 로그인페이지로 이동.
-			response.sendRedirect("Login");
-		}
-		
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/mypage.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
-
-
-
-
-
