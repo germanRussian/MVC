@@ -15,34 +15,36 @@ public class LoginMapper {
 		String url = "jdbc:mysql://localhost:3306/garam?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "smart";
+
+		StringBuffer qry = new StringBuffer();
+		qry.append(" SELECT * FROM g_member ");
+		qry.append(" WHERE uid = ? AND upw = sha1(?) ");
+		
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		
+
 		try {
-			StringBuffer qry = new StringBuffer();
-			qry.append(" SELECT * FROM g_member ");
-			qry.append(" WHERE uid = ? AND upw = sha1(?) ");
-						
+
 			String sql = qry.toString();
-			
+
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, password);
-			
+
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, dto.getUid());
 			stmt.setString(2, dto.getUpw());
-			
+
 			rs = stmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				LoginVO vo = new LoginVO();
-				
+
 				vo.setUid(rs.getString("uid"));
 				vo.setUname(rs.getString("uname"));
 				vo.setSchoolname(rs.getString("schoolname"));
-				
+
 				return vo;
 			}
 		} catch (Exception e) {
@@ -50,9 +52,12 @@ public class LoginMapper {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs != null) rs.close();
-				if(stmt != null) stmt.close();
-				if(conn != null) conn.close();
+				if (rs != null)
+					rs.close();
+				if (stmt != null)
+					stmt.close();
+				if (conn != null)
+					conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -62,8 +67,3 @@ public class LoginMapper {
 	}
 
 }
-
-
-
-
-

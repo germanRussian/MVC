@@ -1,5 +1,9 @@
+<%@page import="domain.LoginVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	LoginVO vo = (LoginVO) request.getAttribute("vo");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,10 +33,10 @@ if (navigator.geolocation) {
         <div class="b01 pd16">
             <div class="oH w100">
                 <div class="name fL">
-                    <b><%=session.getAttribute("sessName") %></b>님 안녕하세요!
+                    <b><%=vo.getUname() %></b>님 안녕하세요!
                 </div>
                 <div class="fR">
-                    <button onclick="location.href='mymodi.jsp'">내정보수정</button>
+                    <button onclick="location.href='MyModi'">내정보수정</button>
                     <a href="logout.jsp" class="blue">로그아웃</a>
                     <!--평소에는 내정보수정 버튼만 보이고, 수정 중일때만 완료버튼 표시-->
                 </div>
@@ -41,44 +45,44 @@ if (navigator.geolocation) {
             <table>
                 <tr>
                     <td>이름</td>
-                    <td><%=session.getAttribute("sessName") %></td>
+                    <td><%=vo.getUname() %></td>
                 </tr>
                 <tr>
                     <td>휴대폰 번호</td>
-                    <td></td>
+                    <td><%=vo.getUid() %></td>
                 </tr>
                 <tr>
                     <td>학교</td>
-                    <td></td>
+                    <td><%=vo.getSchoolname() %></td>
                 </tr>
                 <tr>
                     <td>학년반</td>
-                    <td></td>
+                    <td><%=vo.getGradeclass() %></td>
                 </tr>
                 <tr>
                     <td>노선</td>
-                    <td></td>
+                    <td><%=vo.getRoute() %></td>
                 </tr>
                 <tr>
                     <td>탑승장소</td>
-                    <td></td>
+                    <td><%=vo.getBoardingplace() %></td>
                 </tr>
             </table>
         </div>
 
         <div class="b02 pd16">
             <a href="bus.jsp" class="mb16 qrbtn">
-                <img src="views/img/img01.png">QR 승하차 체크하기<img src="/MVC/views/img/ico_arrow.png" class="fR">
+                <img src="views/img/img01.png">QR 승하차 체크하기<img src="views/img/ico_arrow.png" class="fR">
             </a>
             <div class="mb16">
                 <img src="views/img/img02.png">잔여 이용 횟수
                 <span class="fR"><b>4</b>회</span>
             </div>
             <a href="map.jsp" class="mb16" id="map">
-                <img src="views/img/img03.png">실시간 버스 위치<img src="/MVC/views/img/ico_arrow2.png" class="fR">
+                <img src="views/img/img03.png">실시간 버스 위치<img src="views/img/ico_arrow2.png" class="fR">
             </a>
             <a href="line.jsp">
-                <img src="views/img/img05.png">버스 노선 안내<img src="/MVC/views/img/ico_arrow2.png" class="fR">
+                <img src="views/img/img05.png">버스 노선 안내<img src="views/img/ico_arrow2.png" class="fR">
             </a>
         </div>
         
