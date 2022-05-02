@@ -1,6 +1,5 @@
 package service;
 
-import domain.LoginDTO;
 import domain.LoginVO;
 
 public interface MyModiService {

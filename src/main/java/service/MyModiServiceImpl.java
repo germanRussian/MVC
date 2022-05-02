@@ -1,10 +1,10 @@
 package service;
 
-import domain.LoginDTO;
+
 import domain.LoginVO;
-import domain.MyPageDTO;
+
 import mapper.MyModiMapper;
-import mapper.MyPageMapper;
+
 
 public class MyModiServiceImpl implements MyModiService {
 
