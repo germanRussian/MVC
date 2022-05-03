@@ -5,27 +5,31 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
-import domain.LoginDTO;
 import domain.LoginVO;
+import domain.UseHistoryVO;
 
-public class LoginMapper {
+public class ListMapper {
 
-	public LoginVO read(LoginDTO dto) {
+	public Collection<UseHistoryVO> read(String uid, String status) {
 		String url = "jdbc:mysql://localhost:3306/garam?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "smart";
 
-		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT * FROM g_member ");
-		sql.append(" WHERE uid = ? AND upw = sha1(?) ");
-		
-		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
+		
+		
+		ArrayList<UseHistoryVO> list = new ArrayList<UseHistoryVO>();
 
 		try {
+			StringBuffer sql = new StringBuffer();
+			sql.append(" SELECT * FROM g_UseHistory ");
+			sql.append(" WHERE uid = ? and status = ? ");
+			sql.append(" order by bpdate desc");
 
 			
 
@@ -33,19 +37,24 @@ public class LoginMapper {
 			conn = DriverManager.getConnection(url, user, password);
 
 			stmt = conn.prepareStatement(sql.toString());
-			stmt.setString(1, dto.getUid());
-			stmt.setString(2, dto.getUpw());
-
+			stmt.setString(1, uid);
+			stmt.setString(2, status);
+			
+			
 			rs = stmt.executeQuery();
+			UseHistoryVO vo = null;
 
-			if (rs.next()) {
-				LoginVO vo = new LoginVO();
+			while(rs.next()) {
+				vo = new UseHistoryVO();
 
+				vo.setNum(rs.getInt("num"));
 				vo.setUid(rs.getString("uid"));
-				vo.setUname(rs.getString("uname"));
-				vo.setSchoolname(rs.getString("schoolname"));
-
-				return vo;
+				vo.setStatus(rs.getString("status"));
+				vo.setStart(rs.getString("start"));
+				vo.setEnd(rs.getString("end"));
+				vo.setBpdate(rs.getTimestamp("bpdate"));
+				
+				list.add(vo);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -63,7 +72,9 @@ public class LoginMapper {
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return list;
 	}
+	
+	
 
 }

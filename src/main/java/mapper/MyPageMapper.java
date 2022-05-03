@@ -24,16 +24,16 @@ public class MyPageMapper {
 			ResultSet rs = null;
 			
 			try {
-				StringBuffer qry = new StringBuffer();
-				qry.append(" SELECT * FROM g_member ");
-				qry.append(" WHERE uid = ? ");
+				StringBuffer sql = new StringBuffer();
+				sql.append(" SELECT * FROM g_member ");
+				sql.append(" WHERE uid = ? ");
 							
-				String sql = qry.toString();
+				
 				
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				conn = DriverManager.getConnection(url, user, password);
 				
-				stmt = conn.prepareStatement(sql);
+				stmt = conn.prepareStatement(sql.toString());
 				stmt.setString(1, dto.getUid());
 				
 				
