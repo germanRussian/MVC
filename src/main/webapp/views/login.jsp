@@ -12,12 +12,12 @@
 <meta http-equiv="Content-Security-Policy"
 	content="upgrade-insecure-requests">
 <title>로그인</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="views/style.css">
 </head>
 
 <body class="page01 tC">
 	<div class="mXY">
-		<img src="./img/logo.png">
+		<img src="views/img/logo.png">
 
 
 		<div class="a01">
