@@ -5,8 +5,8 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%-- <c:out value="${param.vo}" /> --%>
-${param.vo}
+
+
 
 <%-- <%
 LoginVO vo = (LoginVO) request.getAttribute("vo");
@@ -29,34 +29,32 @@ LoginVO vo = (LoginVO) request.getAttribute("vo");
 	<div class="jointit w100 tC">
 		<b>내정보수정</b>
 	</div>
-
-	<div class="pd16">
+<div class="pd16">
 		<form method="post" action="">
-			<input type="hidden" name="uid" id="uid" value="${vo.getUname() }<%-- <%=vo.getUid()%> --%>">
-			<br> <br>
+			<input type="hidden" name="uid" id="uid"
+				value="${vo.uname }<%-- <%=vo.getUid()%> --%>"> <br> <br>
 			<div>
 				<h4>이름</h4>
 				<input type="text" name="uname" id="uname"
-					value="${vo.getUname() }<%-- <%=vo.getUname()%> --%>">
+					value="${vo.uname }<%-- <%=vo.getUname()%> --%>">
 			</div>
 			<br>
 			<div>
 				<h4>학교</h4>
 				<input type="text" name="schoolname" id="uschool"
-					value="${vo.getSchoolname() }<%-- <%=vo.getSchoolname()%> --%>">
+					value="${vo.schoolname }<%-- <%=vo.getSchoolname()%> --%>">
 			</div>
 			<br>
 			<div>
 				<h4>학년/반</h4>
 				<input type="text" name="gradeclass" id="ugrade"
-					value="${vo.getGradeclass() }<%-- <%=vo.getGradeclass()%> --%>">
+					value="${vo.gradeclass }<%-- <%=vo.getGradeclass()%> --%>">
 			</div>
 			<br>
 			<div>
 				<h4 class="inline">휴대폰 번호</h4>
 				<span>(※ 확인만 가능합니다. 휴대폰 번호 변경시, 재가입 필요.)</span> <input type="text"
-					name="uid" id="uid"
-					value="${vo.getUid() }<%-- <%=vo.getUid()%> --%>"
+					name="uid" id="uid" value="${vo.uid }<%-- <%=vo.getUid()%> --%>"
 					readonly="readonly">
 			</div>
 			<br>
@@ -70,15 +68,18 @@ LoginVO vo = (LoginVO) request.getAttribute("vo");
 				<h4>노선</h4>
 				<div class="sltbox">
 					<select name="route" id="busroot">
-						<option value="A노선" <c:if test="${'A노선' eq vo.getRoute()}">selected</c:if>>A노선</option>
-							<%-- <%="A노선".equals(vo.getRoute()) ? "selected" : ""%> --%>
-							
-						<option value="B노선" <c:if test="${'A노선' eq vo.getRoute()}">selected</c:if>>B노선</option>
-							
-							<%-- <%="B노선".equals(vo.getRoute()) ? "selected" : ""%> --%>
-						<option value="C노선" <c:if test="${'A노선' eq vo.getRoute()}">selected</c:if>>C노선</option>
-							
-							<%-- <%="C노선".equals(vo.getRoute()) ? "selected" : ""%> --%>
+						<option value="A노선"
+							<c:if test="${'A노선' eq vo.route}">selected</c:if>>A노선</option>
+						<%-- <%="A노선".equals(vo.getRoute()) ? "selected" : ""%> --%>
+
+						<option value="B노선"
+							<c:if test="${'A노선' eq vo.route}">selected</c:if>>B노선</option>
+
+						<%-- <%="B노선".equals(vo.getRoute()) ? "selected" : ""%> --%>
+						<option value="C노선"
+							<c:if test="${'A노선' eq vo.route}">selected</c:if>>C노선</option>
+
+						<%-- <%="C노선".equals(vo.getRoute()) ? "selected" : ""%> --%>
 					</select>
 				</div>
 			</div>
@@ -90,9 +91,15 @@ LoginVO vo = (LoginVO) request.getAttribute("vo");
 					<select name="boardingplace" id="place">
 						<!-- 3항 연산자를 사용하여, 데이터에 저장된 값과 value 값을 비교하여 참이면, 내정보수정 페이지에 해당 정보를 뿌려줌. -->
 						<%-- <%= "C장소".equals(vo.getBoardingplace()) ? "selected" : "" %> --%>
-						<option value="A장소" <c:if test="${'A장소' eq vo.getBoardingplace()}">selected</c:if>> A장소 </option>
-						<option value="B장소" <c:if test="${'B장소' eq vo.getBoardingplace()}">selected</c:if>> B장소 </option>
-						<option value="C장소"	 <c:if test="${'C장소' eq vo.getBoardingplace()}">selected</c:if>	> C장소 </option>
+						<option value="A장소"
+							<c:if test="${'A장소' eq vo.boardingplace}">selected</c:if>>
+							A장소</option>
+						<option value="B장소"
+							<c:if test="${'B장소' eq vo.boardingplace}">selected</c:if>>
+							B장소</option>
+						<option value="C장소"
+							<c:if test="${'C장소' eq vo.boardingplace}">selected</c:if>>
+							C장소</option>
 					</select>
 				</div>
 			</div>

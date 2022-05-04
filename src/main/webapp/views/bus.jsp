@@ -6,9 +6,7 @@
     
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
-    <%-- <c:out value="${param.vo}"/> --%>
-   ${param.vo}
-
+   
 <%-- <%
 LoginVO bus = (LoginVO)request.getAttribute("vo");
 
@@ -52,7 +50,7 @@ LoginVO bus = (LoginVO)request.getAttribute("vo");
 			</div>
 
 			<div class=" select">
-				<img src="views/img/img04.png">도착지 <span class="fR">${vo.getSchoolname()}<%-- <%=bus.getSchoolname() %> --%></span>
+				<img src="views/img/img04.png">도착지 <span class="fR">${vo.schoolname}<%-- <%=bus.getSchoolname() %> --%></span>
 				<!--등교 도착지는 학교로 고정-->
 			</div>
 
@@ -62,7 +60,7 @@ LoginVO bus = (LoginVO)request.getAttribute("vo");
 
 		<div id="goHome">
 			<div class="mb16 select">
-				<img src="views/img/img04.png">출발지 <span class="fR">${vo.getSchoolname()}<%-- <%=bus.getSchoolname() %> --%></span>
+				<img src="views/img/img04.png">출발지 <span class="fR">${vo.schoolname}<%-- <%=bus.getSchoolname() %> --%></span>
 			</div>
 
 			<div class=" select">

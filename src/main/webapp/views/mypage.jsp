@@ -3,8 +3,12 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
+    
+    <!-- JSTL 사용방법 -->
+<%-- request.getAttribute("vo") - ${vo }
+		request.getParameter("vo") - ${param.vo } --%>
    <%-- <c:out value="${param.vo}"/> --%>
-   ${param.vo}
+  <%--  ${param.vo} --%>
   
      
 <%-- <%
@@ -42,7 +46,7 @@ String coupon = (String)request.getAttribute("coupon");
 	<div class="b01 pd16">
 		<div class="oH w100">
 			<div class="name fL">
-				<b>${vo.getUname() }<%-- <%=vo.getUname()%> --%></b>님 안녕하세요!
+				<b>${vo.uname }<%-- <%=vo.getUname()%> --%></b>님 안녕하세요!
 			</div>
 			<div class="fR">
 				<button onclick="location.href='MyModi'">내정보수정</button>
@@ -54,27 +58,27 @@ String coupon = (String)request.getAttribute("coupon");
 		<table>
 			<tr>
 				<td>이름</td>
-				<td>${vo.getUname() }<%-- <%=vo.getUname()%> --%></td>
+				<td>${vo.uname }<%-- <%=vo.getUname()%> --%></td>
 			</tr>
 			<tr>
 				<td>휴대폰 번호</td>
-				<td>${vo.getUid() }<%-- <%=vo.getUid()%> --%></td>
+				<td>${vo.uid }<%-- <%=vo.getUid()%> --%></td>
 			</tr>
 			<tr>
 				<td>학교</td>
-				<td>${vo.getSchoolname() }<%-- <%=vo.getSchoolname()%> --%></td>
+				<td>${vo.schoolname }<%-- <%=vo.getSchoolname()%> --%></td>
 			</tr>
 			<tr>
 				<td>학년반</td>
-				<td>${vo.getGradeclass() }<%-- <%=vo.getGradeclass()%> --%></td>
+				<td>${vo.gradeclass }<%-- <%=vo.getGradeclass()%> --%></td>
 			</tr>
 			<tr>
 				<td>노선</td>
-				<td>${vo.getRoute() }<%-- <%=vo.getRoute()%> --%></td>
+				<td>${vo.route }<%-- <%=vo.getRoute()%> --%></td>
 			</tr>
 			<tr>
 				<td>탑승장소</td>
-				<td>${vo.getBoardingplace() }<%-- <%=vo.getBoardingplace()%> --%></td>
+				<td>${vo.boardingplace }<%-- <%=vo.getBoardingplace()%> --%></td>
 			</tr>
 		</table>
 	</div>

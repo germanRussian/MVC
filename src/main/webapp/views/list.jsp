@@ -9,14 +9,14 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
-    <%-- <c:out value="${param.vo}"/> --%>
-   ${param.vo}
-   ${param.list}
-   
-   
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+
+
+
+
 <%-- <%
 ListInfos List = (ListInfos) request.getAttribute("list");
 Collection<UseHistoryVO> goList = List.getGoList();
@@ -53,47 +53,81 @@ Collection<UseHistoryVO> backList = List.getBackList();
 		Iterator<UseHistoryVO> it = goList.iterator();
 		while (it.hasNext()) {
 			UseHistoryVO vo = it.next();
-		%> --%>
+		%>
 		
-		<li>
-			<div class="fL">
-				<strong>${list.getStart()} ~ ${list.getEnd()}<%-- <%=vo.getStart()%> ~ <%=vo.getEnd()%> --%></strong><br> <span>${list.getBpdate()}<%-- <%=vo.getBpdate()%> --%></span>
-			</div>
-			<div class="fR">
-				<b>${list.getStatus()}<%-- <%=vo.getStatus()%> --%></b>
-			</div>
-		</li>
-		<%-- <%
+			<li>
+				<div class="fL">
+					<strong>${goList.start} ~ ${goList.end()}<%=vo.getStart()%> ~ <%=vo.getEnd()%>
+					</strong><br> <span>${goList.bpdate}<%=vo.getBpdate()%></span>
+				</div>
+				<div class="fR">
+					<b>${goList.status}<%=vo.getStatus()%></b>
+				</div>
+			</li>
+			
+		<%
 		}
 		}
-		%> --%>
+		%>  --%>
+		<c:forEach var="goList" items="${list.goList }" varStatus="index">
+			<%--  ${status.count } : <c:out value="${list.goList }" /> --%>
+
+			<li>
+				<div class="fL">
+					<strong><c:out value="${goList.start }" /> ~ <c:out
+							value="${goList.end }" /> </strong><br> <span><c:out
+							value="${goList.bpdate}" /></span>
+				</div>
+				<div class="fR">
+					<b>${goList.status}</b>
+				</div>
+			</li>
+		</c:forEach>
+
 
 	</ul>
 
 	<!-- 하교 리스트 -->
-	
+
 	<ul class="list pd16" id="goHomeList">
+
+		<c:forEach var="backList" items="${list.backList }" varStatus="index">
+			<%-- ${status.count } : <c:out value="${list.backList }" /> --%>
+			<li>
+				<div class="fL">
+					<strong>${backList.end} ~ ${backList.start}</strong><br> <span>${backList.bpdate}</span>
+				</div>
+				<div class="fR">
+					<b>${backList.status}</b>
+				</div>
+			</li>
+
+		</c:forEach>
+
 		<%-- <%
 		{
 		Iterator<UseHistoryVO> it = backList.iterator();
 		while (it.hasNext()) {
 			UseHistoryVO vo = it.next();
-		%> --%>
+		%> 
 		<li>
 			<div class="fL">
-				<strong>${list.getEnd()} ~ ${list.getStart()}<%-- <%=vo.getStart()%> ~ <%=vo.getEnd()%> --%></strong><br> <span>${list.getBpdate()}<%-- <%=vo.getBpdate()%> --%></span>
+				<strong>${list.backList.end} ~ ${list.backList.start}<%=vo.getStart()%> ~ <%=vo.getEnd()%></strong><br>
+				<span>${list.backList.bpdate}<%=vo.getBpdate()%></span>
 			</div>
 			<div class="fR">
-				<b>${list.getStatus()}<%-- <%=vo.getStatus()%> --%></b>
+				<b>${list.backList.status}<%=vo.getStatus()%></b>
 			</div>
 		</li>
-		<%-- <%
+		<%
 		}
 		}
 		%> --%>
 
+
+
 	</ul>
-	
+
 
 
 
@@ -101,16 +135,18 @@ Collection<UseHistoryVO> backList = List.getBackList();
 	<div class="FAB">
 		<ul class="ulFl">
 			<li><a href="MyPage"><img src="views/img/ico01.png">
-				<p>내정보</p></a></li>
+					<p>내정보</p></a></li>
 			<li><a href="Bus"><img src="views/img/ico02.png">
-				<p>버스탑승</p></a></li>
+					<p>버스탑승</p></a></li>
 			<li class="on"><a href="List"><img
 					src="views/img/ico03_on.png">
-				<p>이용내역</p></a></li>
+					<p>이용내역</p></a></li>
 		</ul>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
+
+			$("#goHomeList").hide();
 
 			$("#schoolin").click(function() {
 				$("#schoolin").addClass("on");
