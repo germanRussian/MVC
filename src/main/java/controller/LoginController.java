@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.PropertyPermission;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.authenticator.jaspic.PersistentProviderRegistrations.Property;
 
 import domain.LoginDTO;
 import domain.LoginVO;
@@ -42,6 +45,12 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
+		
+		/*
+		 * <jsp:UseBean id="dto" class="domain.LoginDTO/"> <jsp:SetProperty name="dto"
+		 * Property="id" value=""> <jsp:GetProperty name="dto" Property="">
+		 */
 		
 		String uid = request.getParameter("uid");
 		String upw = request.getParameter("upw");

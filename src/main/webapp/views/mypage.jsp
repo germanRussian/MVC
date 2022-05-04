@@ -1,10 +1,17 @@
 <%@page import="domain.LoginVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-LoginVO vo = (LoginVO) request.getAttribute("vo");
+    pageEncoding="UTF-8" isELIgnored="false"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+   <%-- <c:out value="${param.vo}"/> --%>
+   ${param.vo}
+  
+     
+<%-- <%
+LoginVO vo = (LoginVO) request.getAttribute("vo"); 
 String coupon = (String)request.getAttribute("coupon");
-%>
+%> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +42,7 @@ String coupon = (String)request.getAttribute("coupon");
 	<div class="b01 pd16">
 		<div class="oH w100">
 			<div class="name fL">
-				<b><%=vo.getUname()%></b>님 안녕하세요!
+				<b>${vo.getUname() }<%-- <%=vo.getUname()%> --%></b>님 안녕하세요!
 			</div>
 			<div class="fR">
 				<button onclick="location.href='MyModi'">내정보수정</button>
@@ -47,27 +54,27 @@ String coupon = (String)request.getAttribute("coupon");
 		<table>
 			<tr>
 				<td>이름</td>
-				<td><%=vo.getUname()%></td>
+				<td>${vo.getUname() }<%-- <%=vo.getUname()%> --%></td>
 			</tr>
 			<tr>
 				<td>휴대폰 번호</td>
-				<td><%=vo.getUid()%></td>
+				<td>${vo.getUid() }<%-- <%=vo.getUid()%> --%></td>
 			</tr>
 			<tr>
 				<td>학교</td>
-				<td><%=vo.getSchoolname()%></td>
+				<td>${vo.getSchoolname() }<%-- <%=vo.getSchoolname()%> --%></td>
 			</tr>
 			<tr>
 				<td>학년반</td>
-				<td><%=vo.getGradeclass()%></td>
+				<td>${vo.getGradeclass() }<%-- <%=vo.getGradeclass()%> --%></td>
 			</tr>
 			<tr>
 				<td>노선</td>
-				<td><%=vo.getRoute()%></td>
+				<td>${vo.getRoute() }<%-- <%=vo.getRoute()%> --%></td>
 			</tr>
 			<tr>
 				<td>탑승장소</td>
-				<td><%=vo.getBoardingplace()%></td>
+				<td>${vo.getBoardingplace() }<%-- <%=vo.getBoardingplace()%> --%></td>
 			</tr>
 		</table>
 	</div>
@@ -78,7 +85,7 @@ String coupon = (String)request.getAttribute("coupon");
 			src="views/img/ico_arrow.png" class="fR">
 		</a>
 		<div class="mb16">
-			<img src="views/img/img02.png">잔여 이용 횟수 <span class="fR"><b><%=coupon %></b>회</span>
+			<img src="views/img/img02.png">잔여 이용 횟수 <span class="fR"><b>${coupon}<%-- <%=coupon %> --%></b>회</span>
 		</div>
 		<a href="map.jsp" class="mb16" id="map"> <img
 			src="views/img/img03.png">실시간 버스 위치<img
@@ -101,7 +108,7 @@ String coupon = (String)request.getAttribute("coupon");
 					src="views/img/ico01_on.png">
 				<p>내정보</p></a></li>
 				
-			<li><a href="bus.jsp"><img src="views/img/ico02.png">
+			<li><a href="Bus"><img src="views/img/ico02.png">
 				<p>버스탑승</p></a></li>
 				
 			<li><a href="List"><img src="views/img/ico03.png">

@@ -3,13 +3,25 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="domain.UseHistoryVO"%>
 <%@page import="java.util.Collection"%>
+
+
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
+	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+    <%-- <c:out value="${param.vo}"/> --%>
+   ${param.vo}
+   ${param.list}
+   
+   
+<%-- <%
 ListInfos List = (ListInfos) request.getAttribute("list");
 Collection<UseHistoryVO> goList = List.getGoList();
 Collection<UseHistoryVO> backList = List.getBackList();
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,48 +48,49 @@ Collection<UseHistoryVO> backList = List.getBackList();
 
 	<!-- 등교 리스트 -->
 	<ul class="list pd16" id="goSchoolList">
-		<%
+		<%-- <%
 		{
 		Iterator<UseHistoryVO> it = goList.iterator();
 		while (it.hasNext()) {
 			UseHistoryVO vo = it.next();
-		%>
+		%> --%>
+		
 		<li>
 			<div class="fL">
-				<strong><%=vo.getStart()%> ~ <%=vo.getEnd()%></strong><br> <span><%=vo.getBpdate()%></span>
+				<strong>${list.getStart()} ~ ${list.getEnd()}<%-- <%=vo.getStart()%> ~ <%=vo.getEnd()%> --%></strong><br> <span>${list.getBpdate()}<%-- <%=vo.getBpdate()%> --%></span>
 			</div>
 			<div class="fR">
-				<b><%=vo.getStatus()%></b>
+				<b>${list.getStatus()}<%-- <%=vo.getStatus()%> --%></b>
 			</div>
 		</li>
-		<%
+		<%-- <%
 		}
 		}
-		%>
+		%> --%>
 
 	</ul>
 
 	<!-- 하교 리스트 -->
 	
 	<ul class="list pd16" id="goHomeList">
-		<%
+		<%-- <%
 		{
 		Iterator<UseHistoryVO> it = backList.iterator();
 		while (it.hasNext()) {
 			UseHistoryVO vo = it.next();
-		%>
+		%> --%>
 		<li>
 			<div class="fL">
-				<strong><%=vo.getEnd()%> ~ <%=vo.getStart()%></strong><br> <span><%=vo.getBpdate()%></span>
+				<strong>${list.getEnd()} ~ ${list.getStart()}<%-- <%=vo.getStart()%> ~ <%=vo.getEnd()%> --%></strong><br> <span>${list.getBpdate()}<%-- <%=vo.getBpdate()%> --%></span>
 			</div>
 			<div class="fR">
-				<b><%=vo.getStatus()%></b>
+				<b>${list.getStatus()}<%-- <%=vo.getStatus()%> --%></b>
 			</div>
 		</li>
-		<%
+		<%-- <%
 		}
 		}
-		%>
+		%> --%>
 
 	</ul>
 	

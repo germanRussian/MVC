@@ -10,16 +10,16 @@ import domain.LoginDTO;
 import domain.LoginVO;
 import domain.MyPageDTO;
 
-public class LoginMapper {
+public class MyBusMapper {
 
-	public LoginVO read(LoginDTO dto) {
+	public LoginVO read(MyPageDTO dto) {
 		String url = "jdbc:mysql://localhost:3306/garam?characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 		String user = "root";
 		String password = "smart";
 
 		StringBuffer sql = new StringBuffer();
 		sql.append(" SELECT * FROM g_member ");
-		sql.append(" WHERE uid = ? AND upw = sha1(?) ");
+		sql.append(" WHERE uid = ? ");
 		
 		
 		Connection conn = null;
@@ -35,19 +35,19 @@ public class LoginMapper {
 
 			stmt = conn.prepareStatement(sql.toString());
 			stmt.setString(1, dto.getUid());
-			stmt.setString(2, dto.getUpw());
-
+			
 			rs = stmt.executeQuery();
-
-			if (rs.next()) {
+			if(rs.next()) {
 				LoginVO vo = new LoginVO();
-
-				vo.setUid(rs.getString("uid"));
-				vo.setUname(rs.getString("uname"));
+				
+				
 				vo.setSchoolname(rs.getString("schoolname"));
-
+				
+				
 				return vo;
 			}
+
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,5 +66,4 @@ public class LoginMapper {
 		}
 		return null;
 	}
-
 }
