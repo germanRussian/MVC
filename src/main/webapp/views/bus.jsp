@@ -79,7 +79,8 @@ LoginVO bus = (LoginVO)request.getAttribute("vo");
 
 		</div>
 	</div>
-	<button class="mX mt40" onclick="location.href='qrcode.jsp'">QR
+	
+	<button class="mX mt40" onclick="location.href='code'">QR
 		Code 실행</button>
 		
 

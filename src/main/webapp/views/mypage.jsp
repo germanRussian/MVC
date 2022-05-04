@@ -50,7 +50,7 @@ String coupon = (String)request.getAttribute("coupon");
 			</div>
 			<div class="fR">
 				<button onclick="location.href='MyModi'">내정보수정</button>
-				<a href="logout.jsp" class="blue">로그아웃</a>
+				<a href="LogOut" class="blue">로그아웃</a>
 				<!--평소에는 내정보수정 버튼만 보이고, 수정 중일때만 완료버튼 표시-->
 			</div>
 		</div>
@@ -84,7 +84,7 @@ String coupon = (String)request.getAttribute("coupon");
 	</div>
 
 	<div class="b02 pd16">
-		<a href="bus.jsp" class="mb16 qrbtn"> <img
+		<a href="Bus" class="mb16 qrbtn"> <img
 			src="views/img/img01.png">QR 승하차 체크하기<img
 			src="views/img/ico_arrow.png" class="fR">
 		</a>
@@ -94,7 +94,8 @@ String coupon = (String)request.getAttribute("coupon");
 		<a href="map.jsp" class="mb16" id="map"> <img
 			src="views/img/img03.png">실시간 버스 위치<img
 			src="views/img/ico_arrow2.png" class="fR">
-		</a> <a href="line.jsp"> <img src="views/img/img05.png">버스 노선 안내<img
+		</a> 
+		<a href="line.jsp"> <img src="views/img/img05.png">버스 노선 안내<img
 			src="views/img/ico_arrow2.png" class="fR">
 		</a>
 	</div>
