@@ -37,7 +37,13 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("views/login.jsp");
+		/*
+		 * RequestDispatcher dispatcher =
+		 * request.getRequestDispatcher("views/login.jsp"); dispatcher.forward(request,
+		 * response);
+		 */
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/login2.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -78,33 +84,30 @@ public class LoginController extends HttpServlet {
 			// 비밀번호 저장
 			Cookie cookiePW = new Cookie("userPW", upw);// 비밀번호 쿠키 생성
 
-			
-			
 			if (saveId != null) { // 체크박스 체크여부에 따라 쿠키 저장 확인
 
 				cookieID.setMaxAge(60 * 60 * 24);// 하루동안 쿠키 생성 (아이디)
-				cookieID.setPath("/");//최상위 경로 이하 설정
-				
+				cookieID.setPath("/");// 최상위 경로 이하 설정
+
 				cookiePW.setMaxAge(60 * 60 * 24);// 하루동안 쿠키 생성 (비밀번호)
 				cookiePW.setPath("/");
 
 				// 체크박스 체크 되었을 때
 				// 쿠키 저장
-				response.addCookie(cookieID);
-				response.addCookie(cookiePW);
+				// response.addCookie(cookieID); //login.jsp
+				// response.addCookie(cookiePW);//login.jsp
 			} else {
 				// 체크박스 체크 해제되었을 때
 				// 쿠키 유효시간 0으로 해서 브라우저에서 삭제하게 한다.
 				cookieID.setMaxAge(0);
 				cookieID.setPath("/");
-				
+
 				cookiePW.setMaxAge(0);
 				cookiePW.setPath("/");
 
-				response.addCookie(cookieID);
-				response.addCookie(cookiePW);
+				// response.addCookie(cookieID);//login.jsp
+				// response.addCookie(cookiePW);//login.jsp
 			}
-			
 
 			// 로그인시 마이페이지로.
 			response.sendRedirect("MyPage");
